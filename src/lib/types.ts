@@ -29,6 +29,7 @@ export class InvalidFractionIdInResponseError extends Error {
 export interface MinRenovasjonClientOptions {
   appKey: string
   norkartBaseUrl?: string
+  geonorgeBaseUrl?: string
 }
 
 export interface MinRenovasjonGetFractionsOptions {
@@ -53,6 +54,14 @@ export interface MinRenovasjonGetEmptyingDatesOptions {
   addressCode: string
   streetName: string
   houseNumber: string
+}
+
+export type MinRenovasjonGetAddressInfo = MinRenovasjonGetEmptyingDatesOptions
+
+export interface MinRenovasjonGetAddressInfoOptions {
+  streetName: string
+  houseNumber: string
+  municipality: string
 }
 
 // API Types
@@ -85,5 +94,27 @@ export function isGetEmptyingDatesRawResponse (data: _GetEmptyingDatesRawRespons
 export function isDateString (data: string): boolean {
   const date = new Date(data)
   if (date.toString() === 'Invalid Date') return false
+  return true
+}
+
+export interface _GetAddressInfoRawResponse {
+  adresser: Array<{
+    kommunenummer: string
+    adressekode: number
+    adressenavn: string
+    bokstav: string
+    nummer: number
+  }>
+}
+
+export function isGetAddressInfoRawResponse (data: _GetAddressInfoRawResponse): data is _GetAddressInfoRawResponse {
+  if (!Array.isArray(data.adresser)) return false
+  if (data.adresser.map(adresse => {
+    if (typeof adresse.kommunenummer !== 'string') return false
+    if (typeof adresse.adressekode !== 'number') return false
+    if (typeof adresse.adressenavn !== 'string') return false
+    if (typeof adresse.nummer !== 'number') return false
+    return true
+  }).includes(false)) return false
   return true
 }

@@ -6,16 +6,21 @@ import {
   MinRenovasjonClientOptions,
   MinRenovasjonGetFractionsOptions,
   MinRenovasjonFractions,
-  _GetFractionsRawResponse,
-  isGetFractionRawResponse,
   MinRenovasjonGetEmptyingDatesOptions,
   MinRenovasjonEmptyingDates,
+  MinRenovasjonGetAddressInfoOptions,
+  MinRenovasjonGetAddressInfo,
+  _GetFractionsRawResponse,
+  isGetFractionRawResponse,
   _GetEmptyingDatesRawResponse,
-  isGetEmptyingDatesRawResponse
+  isGetEmptyingDatesRawResponse,
+  _GetAddressInfoRawResponse,
+  isGetAddressInfoRawResponse
 } from './lib/types'
 
 export class MinRenovasjonClient {
   private readonly _api: AxiosInstance
+  private readonly _geonorgeBaseUrl: string
 
   constructor (options: MinRenovasjonClientOptions) {
     if (typeof options.appKey !== 'string') throw new MissingParameterError('appKey')
@@ -26,6 +31,8 @@ export class MinRenovasjonClient {
       },
       baseURL: options.norkartBaseUrl ?? 'https://komteksky.norkart.no/komtek.renovasjonwebapi/api'
     })
+
+    this._geonorgeBaseUrl = options.geonorgeBaseUrl?.replace(/\/$/, '') ?? 'https://ws.geonorge.no/adresser/v1'
   }
 
   async getFractions (options: MinRenovasjonGetFractionsOptions): Promise<MinRenovasjonFractions[]> {
@@ -84,6 +91,40 @@ export class MinRenovasjonClient {
         dates: entry.Tommedatoer.map(date => new Date(date))
       }
     })
+
+    return formattedData
+  }
+
+  async getAddressInformation (options: MinRenovasjonGetAddressInfoOptions): Promise<MinRenovasjonGetAddressInfo[]> {
+    if (typeof options.municipality !== 'string') throw new MissingParameterError('municipalityNumber')
+    if (typeof options.streetName !== 'string') throw new MissingParameterError('streetName')
+    if (typeof options.houseNumber !== 'string') throw new MissingParameterError('houseNumber')
+
+    const filter = [
+      'adresser.adressekode',
+      'adresser.adressenavn',
+      'adresser.nummer',
+      'adresser.bokstav',
+      'adresser.kommunenummer'
+    ]
+
+    const response = await axios.get<_GetAddressInfoRawResponse>(this._geonorgeBaseUrl + '/sok', {
+      params: {
+        sok: `${options.streetName} ${options.houseNumber}, ${options.municipality}`,
+        filtrer: filter.join(',')
+      }
+    })
+
+    if (!isGetAddressInfoRawResponse(response.data)) {
+      throw new UnexpectedAPIResponseError(response)
+    }
+
+    const formattedData: MinRenovasjonGetAddressInfo[] = response.data.adresser.map(adresse => ({
+      municipalityNumber: adresse.kommunenummer,
+      addressCode: adresse.adressekode.toString(),
+      streetName: adresse.adressenavn,
+      houseNumber: `${adresse.nummer}${adresse.bokstav}`
+    }))
 
     return formattedData
   }
