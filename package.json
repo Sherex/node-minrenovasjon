@@ -1,0 +1,37 @@
+{
+  "name": "@sherex/minrenovasjon",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A NodeJS library to get trash-emptying days for an address in Norway",
+  "main": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "dev": "ts-node src/",
+    "lint": "eslint src/",
+    "lint:fix": "eslint --fix src/",
+    "test": "npm run lint"
+  },
+  "keywords": [],
+  "author": "Ingar Helgesen (https://github.com/Sherex)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "14.14.31",
+    "@typescript-eslint/eslint-plugin": "4.15.1",
+    "eslint": "7.20.0",
+    "eslint-config-standard-with-typescript": "20.0.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "4.3.1",
+    "eslint-plugin-standard": "4.1.0",
+    "ts-node": "9.1.1",
+    "typescript": "4.1.5"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0"
+  }
+}
