@@ -128,4 +128,16 @@ export class MinRenovasjonClient {
 
     return formattedData
   }
+
+  async getEmptyingDatesFromAddress (options: MinRenovasjonGetAddressInfoOptions): Promise<MinRenovasjonEmptyingDates[]> {
+    if (typeof options.municipality !== 'string') throw new MissingParameterError('municipalityNumber')
+    if (typeof options.addressName !== 'string') throw new MissingParameterError('addressName')
+    if (typeof options.houseNumber !== 'string') throw new MissingParameterError('houseNumber')
+
+    const addresses = await this.getAddressInformation(options)
+    if (addresses.length < 1) return []
+
+    const emptyingDates = await this.getEmptyingDates(addresses[0])
+    return emptyingDates
+  }
 }
