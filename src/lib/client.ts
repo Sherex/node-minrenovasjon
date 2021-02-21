@@ -16,7 +16,7 @@ import {
   isGetEmptyingDatesRawResponse,
   _GetAddressInfoRawResponse,
   isGetAddressInfoRawResponse
-} from './lib/types'
+} from './types'
 
 export class MinRenovasjonClient {
   private readonly _api: AxiosInstance
