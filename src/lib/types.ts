@@ -18,6 +18,12 @@ export class UnexpectedAPIResponseError extends Error {
   }
 }
 
+export class InvalidFractionIdInResponseError extends Error {
+  constructor (fractionId: number) {
+    super(`Couldn't find a fraction with the ID of "${fractionId}"! This is probably a temporary problem with the API..`)
+  }
+}
+
 // Client Types
 
 export interface MinRenovasjonClientOptions {
@@ -36,14 +42,15 @@ export interface MinRenovasjonFractions {
 }
 
 export interface MinRenovasjonEmptyingDates {
-  typeId: string
-  type: string
-  typeIconUrl: string
+  fractionId: number
+  fraction: string
+  fractionIconUrl: string
   dates: Date[]
 }
 
 export interface MinRenovasjonGetEmptyingDatesOptions {
-  streetCode: string
+  municipalityNumber: string
+  addressCode: string
   streetName: string
   houseNumber: string
 }
@@ -56,9 +63,27 @@ export interface _GetFractionsRawResponse {
   Ikon: string
 }
 
-export function isGetFractionRawResponse (data: any): data is _GetFractionsRawResponse {
+export function isGetFractionRawResponse (data: _GetFractionsRawResponse): data is _GetFractionsRawResponse {
   if (typeof data.Id !== 'number') return false
   if (typeof data.Navn !== 'string') return false
   if (typeof data.Ikon !== 'string') return false
+  return true
+}
+
+export interface _GetEmptyingDatesRawResponse {
+  FraksjonId: number
+  Tommedatoer: string[]
+}
+
+export function isGetEmptyingDatesRawResponse (data: _GetEmptyingDatesRawResponse): data is _GetEmptyingDatesRawResponse {
+  if (typeof data.FraksjonId !== 'number') return false
+  if (!Array.isArray(data.Tommedatoer)) return false
+  if (data.Tommedatoer.map(isDateString).includes(false)) return false
+  return true
+}
+
+export function isDateString (data: string): boolean {
+  const date = new Date(data)
+  if (date.toString() === 'Invalid Date') return false
   return true
 }
