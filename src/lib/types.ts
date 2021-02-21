@@ -52,14 +52,14 @@ export interface MinRenovasjonEmptyingDates {
 export interface MinRenovasjonGetEmptyingDatesOptions {
   municipalityNumber: string
   addressCode: string
-  streetName: string
+  addressName: string
   houseNumber: string
 }
 
 export type MinRenovasjonGetAddressInfo = MinRenovasjonGetEmptyingDatesOptions
 
 export interface MinRenovasjonGetAddressInfoOptions {
-  streetName: string
+  addressName: string
   houseNumber: string
   municipality: string
 }

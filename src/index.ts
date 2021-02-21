@@ -59,7 +59,7 @@ export class MinRenovasjonClient {
   async getEmptyingDates (options: MinRenovasjonGetEmptyingDatesOptions): Promise<MinRenovasjonEmptyingDates[]> {
     if (typeof options.municipalityNumber !== 'string') throw new MissingParameterError('municipalityNumber')
     if (typeof options.addressCode !== 'string') throw new MissingParameterError('addressCode')
-    if (typeof options.streetName !== 'string') throw new MissingParameterError('streetName')
+    if (typeof options.addressName !== 'string') throw new MissingParameterError('addressName')
     if (typeof options.houseNumber !== 'string') throw new MissingParameterError('houseNumber')
 
     const streetCode = options.municipalityNumber + options.addressCode
@@ -70,7 +70,7 @@ export class MinRenovasjonClient {
       },
       params: {
         gatekode: streetCode,
-        gatenavn: options.streetName,
+        gatenavn: options.addressName,
         husnr: options.houseNumber
       }
     })
@@ -97,7 +97,7 @@ export class MinRenovasjonClient {
 
   async getAddressInformation (options: MinRenovasjonGetAddressInfoOptions): Promise<MinRenovasjonGetAddressInfo[]> {
     if (typeof options.municipality !== 'string') throw new MissingParameterError('municipalityNumber')
-    if (typeof options.streetName !== 'string') throw new MissingParameterError('streetName')
+    if (typeof options.addressName !== 'string') throw new MissingParameterError('addressName')
     if (typeof options.houseNumber !== 'string') throw new MissingParameterError('houseNumber')
 
     const filter = [
@@ -110,7 +110,7 @@ export class MinRenovasjonClient {
 
     const response = await axios.get<_GetAddressInfoRawResponse>(this._geonorgeBaseUrl + '/sok', {
       params: {
-        sok: `${options.streetName} ${options.houseNumber}, ${options.municipality}`,
+        sok: `${options.addressName} ${options.houseNumber}, ${options.municipality}`,
         filtrer: filter.join(',')
       }
     })
@@ -122,7 +122,7 @@ export class MinRenovasjonClient {
     const formattedData: MinRenovasjonGetAddressInfo[] = response.data.adresser.map(adresse => ({
       municipalityNumber: adresse.kommunenummer,
       addressCode: adresse.adressekode.toString(),
-      streetName: adresse.adressenavn,
+      addressName: adresse.adressenavn,
       houseNumber: `${adresse.nummer}${adresse.bokstav}`
     }))
 

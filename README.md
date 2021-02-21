@@ -20,7 +20,7 @@ import { MinRenovasjonClient } from '@sherex/minrenovasjon'
   const emptyingDates = await client.getEmptyingDates({
     municipalityNumber: '3807',
     addressCode: '31700',
-    streetName: 'Fylkesbakken',
+    addressName: 'Fylkesbakken',
     houseNumber: '5'
   })
 
@@ -28,7 +28,7 @@ import { MinRenovasjonClient } from '@sherex/minrenovasjon'
 
   const address = await client.getAddressInformation({
     municipality: 'Skien',
-    streetName: 'Fylkesbakken',
+    addressName: 'Fylkesbakken',
     houseNumber: '5'
   })
 
