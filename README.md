@@ -25,6 +25,14 @@ import { MinRenovasjonClient } from '@sherex/minrenovasjon'
   })
 
   console.log(emptyingDates)
+
+  const address = await client.getAddressInformation({
+    municipality: 'Skien',
+    streetName: 'Fylkesbakken',
+    houseNumber: '5'
+  })
+
+  console.log(address)
 })().catch(console.error)
 ```
 
