@@ -94,6 +94,34 @@ Gets the emptying dates for the specified address.
 | options.addressName  | string | true | undefined | The name of the street excluding the housenumber. Eg. `Fylkesbakken` |
 | options.houseNumber  | string | true | undefined | The housenumber of that house, including the letter if any. Eg. `2C` |
 
+<details>
+  <summary>Response</summary>
+
+```typescript
+[
+  {
+    fractionId: 1,
+    fraction: 'Rest, mat og plast',
+    fractionIconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/matrestavfallplast.png',
+    dates: [ 2021-02-21T23:00:00.000Z, 2021-02-28T23:00:00.000Z ]
+  },
+  {
+    fractionId: 2,
+    fraction: 'Papp og papir',
+    fractionIconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/papppapirdrikkekartong.png',
+    dates: [ 2021-02-22T23:00:00.000Z, 2021-03-22T23:00:00.000Z ]
+  },
+  {
+    fractionId: 4,
+    fraction: 'Glass- og metallemballasje',
+    fractionIconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/glassogmetallemballasje.png',
+    dates: [ 2021-03-28T22:00:00.000Z, 2021-05-24T22:00:00.000Z ]
+  }
+]
+```
+
+</details>
+
 ### MinRenovasjonClient#getFractions(options)
 > Used internally in `.getEmptyingDatesFromAddress()`.
 
@@ -102,6 +130,96 @@ Gets the different fractions that can be recycled in this municipality.
 | Parameter | Type | Required | Default | Description |
 | --------- | ---- | -------- | ------- | ----------- |
 | options.municipalityNumber | string | true | undefined | The municipalitynumber for the chosen house. You can find this using `.get` Eg. `3807` |
+
+<details>
+  <summary>Response</summary>
+
+```typescript
+[
+  {
+    id: 1,
+    name: 'Rest, mat og plast',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/matrestavfallplast.png'
+  },
+  {
+    id: 2,
+    name: 'Papp og papir',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/papppapirdrikkekartong.png'
+  },
+  {
+    id: 3,
+    name: 'Matavfall',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/matavfall.png'
+  },
+  {
+    id: 4,
+    name: 'Glass- og metallemballasje',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/glassogmetallemballasje.png'
+  },
+  {
+    id: 5,
+    name: 'Drikkekartonger',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/brush.png'
+  },
+  {
+    id: 6,
+    name: 'Farlig avfall (Må bestilles på rig.no/farlig)',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/farligavfall.png'
+  },
+  {
+    id: 7,
+    name: 'Plastemballasje',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/plastemballasje.png'
+  },
+  {
+    id: 8,
+    name: 'Trevirke',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/brush.png'
+  },
+  {
+    id: 9,
+    name: 'Tekstiler',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/brush.png'
+  },
+  {
+    id: 10,
+    name: 'Hageavfall (Må bestilles på rig.no/hage)',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/hageavfall.png'
+  },
+  {
+    id: 11,
+    name: 'Metaller',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/brush.png'
+  },
+  {
+    id: 12,
+    name: 'Hvitevarer/EE-avfall',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/brush.png'
+  },
+  {
+    id: 13,
+    name: 'Papp',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/pappogkartong.png'
+  },
+  {
+    id: 14,
+    name: 'Grovavfall (Må bestilles på rig.no/grovavfall)',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/gjenstandertilombruk.png'
+  },
+  {
+    id: 15,
+    name: 'Hjemmekompostering',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/brush.png'
+  },
+  {
+    id: 16,
+    name: 'Usortert restavfall',
+    iconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/restavfall.png'
+  }
+]
+```
+
+</details>
 
 ### MinRenovasjonClient#getEmptyingDates(options)
 > Used internally in `.getEmptyingDatesFromAddress()`.
@@ -115,6 +233,34 @@ Gets the emptying dates for the address details gotten from `.getAddressInfo()`.
 | options.addressName | string | true | undefined | The name of the street excluding the housenumber. Eg. `Fylkesbakken` |
 | options.houseNumber | string | true | undefined | The housenumber of that house, including the letter if any. Eg. `2C` |
 
+<details>
+  <summary>Response</summary>
+
+```typescript
+[
+  {
+    fractionId: 1,
+    fraction: 'Rest, mat og plast',
+    fractionIconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/matrestavfallplast.png',
+    dates: [ 2021-02-21T23:00:00.000Z, 2021-02-28T23:00:00.000Z ]
+  },
+  {
+    fractionId: 2,
+    fraction: 'Papp og papir',
+    fractionIconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/papppapirdrikkekartong.png',
+    dates: [ 2021-02-22T23:00:00.000Z, 2021-03-22T23:00:00.000Z ]
+  },
+  {
+    fractionId: 4,
+    fraction: 'Glass- og metallemballasje',
+    fractionIconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/glassogmetallemballasje.png',
+    dates: [ 2021-03-28T22:00:00.000Z, 2021-05-24T22:00:00.000Z ]
+  }
+]
+```
+
+</details>
+
 ### MinRenovasjonClient#getAddressInformation(options)
 > Used internally in `.getEmptyingDatesFromAddress()`.
 
@@ -125,6 +271,22 @@ Search for address details used in other methods.
 | options.municipality | string | true | undefined | The municipality for the chosen house. Eg. `Skien` |
 | options.addressName  | string | true | undefined | The name of the street excluding the housenumber. Eg. `Fylkesbakken` |
 | options.houseNumber  | string | true | undefined | The housenumber of that house, including the letter if any. Eg. `2C` |
+
+<details>
+  <summary>Response</summary>
+
+```typescript
+[
+  {
+    municipalityNumber: '3807',
+    addressCode: '31700',
+    addressName: 'Fylkesbakken',
+    houseNumber: '2C'
+  }
+]
+```
+
+</details>
 
 ## LICENSE
 [MIT](LICENSE)
