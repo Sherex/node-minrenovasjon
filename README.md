@@ -1,5 +1,14 @@
-# MinRenovasjon NodeJS module
-A NodeJS library to get the trash-emptying days for an address in Norway.
+<h1 align=center >MinRenovasjon NodeJS Module</h1>
+<div align="center">
+  <img src="https://img.shields.io/github/workflow/status/sherex/node-minrenovasjon/Tests?label=Tests&style=for-the-badge"/><img src="https://img.shields.io/github/workflow/status/sherex/node-minrenovasjon/Publish?label=Publish&style=for-the-badge"/><img src="https://img.shields.io/npm/v/@sherex/minrenovasjon?style=for-the-badge&color=success"/>
+</div>
+<div align="center">
+  <a href="https://github.com/Sherex/node-minrenovasjon"><img src="https://img.shields.io/static/v1?logo=github&label=&message=GITHUB&color=black&style=for-the-badge"/></a><a href=""><img src="https://img.shields.io/static/v1?logo=npm&label=&message=NPM&color=red&style=for-the-badge"/></a>
+</div>
+
+<br>
+<p align=center >A NodeJS library to get the trash-emptying days for an address in Norway.</p>
+<br>
 
 ## Usage
 ### Installation
