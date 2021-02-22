@@ -36,6 +36,29 @@ import { MinRenovasjonClient } from '@sherex/minrenovasjon'
   console.log(emptyingDates)
 })().catch(console.error)
 ```
+Will output:
+```typescript
+[
+  {
+    fractionId: 1,
+    fraction: 'Rest, mat og plast',
+    fractionIconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/matrestavfallplast.png',
+    dates: [ 2021-02-21T23:00:00.000Z, 2021-02-28T23:00:00.000Z ]
+  },
+  {
+    fractionId: 2,
+    fraction: 'Papp og papir',
+    fractionIconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/papppapirdrikkekartong.png',
+    dates: [ 2021-02-22T23:00:00.000Z, 2021-03-22T23:00:00.000Z ]
+  },
+  {
+    fractionId: 4,
+    fraction: 'Glass- og metallemballasje',
+    fractionIconUrl: 'https://komteksky.norkart.no/komtek.renovasjonwebapi/Ikoner/glassogmetallemballasje.png',
+    dates: [ 2021-03-28T22:00:00.000Z, 2021-05-24T22:00:00.000Z ]
+  }
+]
+```
 
 <details>
   <summary>More examples</summary>
