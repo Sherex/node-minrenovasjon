@@ -1,6 +1,6 @@
 {
   "name": "@sherex/minrenovasjon",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A NodeJS library to get trash-emptying days for an address in Norway",
   "main": "dist/index.js",
   "files": [
